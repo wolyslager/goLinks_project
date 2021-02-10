@@ -31,7 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
+    'links.apps.LinksConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,8 +78,11 @@ WSGI_APPLICATION = 'golinks.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'golinksdb',
+        'USER': 'postgres',
+        'PASSWORD': 'baseball7200',
+        'HOST': 'localhost'
     }
 }
 

@@ -1,9 +1,17 @@
 body{
+	height: 100vh;
+}
+
+.page-container{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
+}
+
+nav{
+	width: 100vw;
+	margin-bottom: 5em;
 }
 
 .input-container{

@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/links.css'%}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Links</title>
+</head>
+
+<body>
+    <div class="page-container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{% url 'home' %}">goLinks App</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'links' %}">View goLinks</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <h1>ALL LINKS</h1>
+        {% if links %}
+        <div class="links-container">
+            {% for link in links %}
+            <div class="card golinkcard">
+                <div class="card-body">
+                    <h5 class="card-title">{{link.golink}}</h5>
+                    <p class="card-text">{{link.url}}</p>
+                    <p class="card-text">Visited {{link.visitors}} time(s) - created by {{link.user}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            {% if links.has_other_pages %}
+            <ul class="pagination">
+                {% if links.has_previous %}
+                <li class="page-item">
+                    <a href="?page={{links.previous_page_number}}" class="page-link">&laquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">&laquo;</a>
+                </li>
+                {% endif %}
+                {% for i in links.paginator.page_range %}
+                {% if links.number == i %}
+                <li class="page-item active">
+                    <a class="page-link">{{i}}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a href="?page={{i}}" class="page-link">{{i}}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% if links.has_next %}
+                <li class="page-item">
+                    <a href="?page={{links.next_page_number}}" class="page-link">&raquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">&raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+        {% else %}
+        <div>
+            <h1>NO LINKS ADDED YET</h1>
+        </div>
+    </div>
+</body>
+
+</html>
+{% endif %}

@@ -1,15 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 
 <head>
-	<link rel="stylesheet" type="text/css" href="register.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>Login</title>
 </head>
 
 <body>
-	<h1>REGISTER</h1>
-	<div class="form-container-register">
+	<h1>LOGIN</h1>
+	<div class="form-container">
 	    <form>
 	        <div class="form-group">
 	            <label for="exampleInputEmail1">Email address</label>
@@ -21,8 +22,8 @@
 	            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 	        </div>
 	        <div class="form-footer">
-		        <button type="submit" class="btn btn-primary">Register</button>
-		        <p>Already have an account?   <a href="">   Login</a></p>
+		        <button type="submit" class="btn btn-primary">Log in</button>
+		        <p>Don't have an account?   <a href="{% url 'register' %}">   Register</a></p>
 	        <div>
 	    </form>
     <div>
