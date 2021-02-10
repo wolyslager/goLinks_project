@@ -1,0 +1,18 @@
+body{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.form-container{
+	width: 40em;
+	border: 1px solid black;
+	padding: 4em;
+}
+
+.form-footer{
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
