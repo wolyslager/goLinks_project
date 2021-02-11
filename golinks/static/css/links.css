@@ -15,6 +15,37 @@ nav{
 	align-items: center;
 }
 
+nav{
+	width: 100vw;
+	margin-bottom: 5em;
+}
+
+.navbar-custom { 
+    background-color: #202fa3; 
+    color: white;
+}
+
+.navbar-custom .navbar-brand {
+    color: white;
+    margin-left: 1em;
+}
+
+.aslogo{
+	 color: #147bfc;
+}
+
+.btn-custom{
+	background-color: #0a4af5;
+	border: none;
+	border-radius: 10%;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+.nav-link{
+	color: white;
+}
+
 h1{
 	text-align: center;
 }

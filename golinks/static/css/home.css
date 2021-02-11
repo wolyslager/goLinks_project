@@ -7,6 +7,31 @@ nav{
 	margin-bottom: 5em;
 }
 
+.navbar-custom { 
+    background-color: #202fa3; 
+    color: white;
+}
+
+.navbar-custom .navbar-brand {
+    color: white;
+    margin-left: 1em;
+}
+
+.aslogo{
+	 color: #147bfc;
+}
+
+.btn-custom{
+	background-color: #0a4af5;
+	border: none;
+	border-radius: 10%;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+.nav-link{
+	color: white;
+}
 
 .page-container{
 	display: flex;
@@ -30,6 +55,7 @@ nav{
 .card{
 	margin-left: 1em;
 	margin-right: 1em;
+	border: 1px solid #202fa3;
 	box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
   	transition: .3s;
 }

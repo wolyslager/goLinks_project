@@ -10,8 +10,9 @@
 
 <body>
     <div class="page-container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{% url 'home' %}">goLinks App</a>
+        <nav class="navbar navbar-expand-lg navbar-custom ">
+            <img class="aslogo" src="{% static 'img/aslogo.png' %}" alt="Abnormal Security" height="50" width="50" class="brand_img"></img>
+            <a class="navbar-brand" href="{% url 'home' %}"> goLinks App</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,17 +29,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        {% if user.is_authenticated %}
+                      {% if user.is_authenticated %}
+                      <button type="button" class="btn-custom">
                         <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout <span class="sr-only">(current)</span></a>
+                        </button>
                         <form action="{% url 'logout' %}" method="POST" id="logout">
-                            {% csrf_token %}
-                            <input type="hidden">
+                          {% csrf_token %}
+                          <input type="hidden">
                         </form>
-                        {% endif %}
+                      {% endif %}
                     </li>
                 </ul>
             </div>
-            </nav>
+        </nav>
             <h1>ALL LINKS</h1>
             {% if links %}
             <div class="links-container">
