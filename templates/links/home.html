@@ -22,6 +22,15 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'home' %}"> Home <span class="sr-only">(current)</span></a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'add' %}"> Add <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'edit' %}"> Edit <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'delete' %}"> Delete <span class="sr-only">(current)</span></a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'links' %}"> View goLinks </a>
                     </li>
@@ -30,22 +39,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                      {% if user.is_authenticated %}
-                      <button type="button" class="btn-custom">
-                        <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout <span class="sr-only">(current)</span></a>
+                        {% if user.is_authenticated %}
+                        <button type="button" class="btn-custom">
+                            <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout <span class="sr-only">(current)</span></a>
                         </button>
                         <form action="{% url 'logout' %}" method="POST" id="logout">
-                          {% csrf_token %}
-                          <input type="hidden">
+                            {% csrf_token %}
+                            <input type="hidden">
                         </form>
-                      {% endif %}
+                        {% endif %}
                     </li>
                 </ul>
             </div>
         </nav>
-         {% include 'misc/alerts.html' %}
-        {% if user.is_authenticated %}
+        {% include 'misc/alerts.html' %}
         <h1>Welcome, {{user.username}}</h1>
+        <hr>
         <div class="cards-container">
             <div class="card" style="width: 14rem; padding-top: 1em;">
                 <div class="container">
@@ -76,24 +85,6 @@
             </div>
         </div>
     </div>
-    {% else %}
-    <form action="{% url 'login' %}" method="POST">
-        {% include 'misc/alerts.html' %}
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter username">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        <div class="form-footer">
-            <button type="submit" class="btn btn-primary">Log in</button>
-            <p>Don't have an account? <a href="{% url 'register' %}"> Register</a></p>
-            <div>
-    </form>
-    {% endif %}
 </body>
 
 </html>

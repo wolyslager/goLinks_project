@@ -3,9 +3,9 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/links.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/add-link.css'%}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <title>Links</title>
+    <title>Add Link</title>
 </head>
 
 <body>
@@ -51,65 +51,32 @@
                 </ul>
             </div>
         </nav>
-        <h1>ALL LINKS</h1>
+        <h1>ADD LINK</h1>
         <hr>
-        {% if links %}
-        <div class="links-container">
-            {% for link in links %}
-            <div class="card golinkcard">
-                <div class="card-body">
-                    <h5 class="card-title">go/{{link.golink}}</h5>
-                    <p class="card-text">{{link.url}}</p>
-                    <p class="card-text">Visited {{link.visitors}} time(s) - created by {{link.user}} </p>
+        <div class="form-wrapper">
+            <form action="{% url 'add' %}" method="POST">
+                {% include 'misc/alerts.html' %}
+                {% csrf_token %}
+                <div class="alert alert-primary" role="alert">
+                    <h4 class="alert-heading">Link Format</h4>
+                    <p>Please make sure to enter a FULL url for the URL input
+                    </p>
+                    <hr>
+                    <p>ex: https://www.example.com </p>
                 </div>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="row">
-            {% if links.has_other_pages %}
-            <ul class="pagination">
-                {% if links.has_previous %}
-                <li class="page-item">
-                    <a href="?page={{links.previous_page_number}}" class="page-link">&laquo;</a>
-                </li>
-                {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link">&laquo;</a>
-                </li>
-                {% endif %}
-                {% for i in links.paginator.page_range %}
-                {% if links.number == i %}
-                <li class="page-item active">
-                    <a class="page-link">{{i}}</a>
-                </li>
-                {% else %}
-                <li class="page-item">
-                    <a href="?page={{i}}" class="page-link">{{i}}</a>
-                </li>
-                {% endif %}
-                {% endfor %}
-                {% if links.has_next %}
-                <li class="page-item">
-                    <a href="?page={{links.next_page_number}}" class="page-link">&raquo;</a>
-                </li>
-                {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link">&raquo;</a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
-        {% endif %}
-        {% else %}
-        <div>
-            <div class="alert alert-primary" role="alert">
-                <h4 class="alert-heading">No Links!</h4>
-                <p>No links have been added yet. Navigate to the "Add" tab and start creating some go/links!</p>
-                <hr>
-            </div>
+                <input type="hidden" name="username" value="{{ user.username }}">
+                <div class="form-group">
+                    <label for="url">URL </label>
+                    <input type="text" class="form-control" name="url" id="url" aria-describedby="emailHelp" placeholder="Enter FULL url ex: https://www.example.com/">
+                </div>
+                <div class="form-group">
+                    <label for="golink">go/Link</label>
+                    <input type="text" name="golink" class="form-control" id="exampleInputPassword1" placeholder="enter go/Link">
+                </div>
+                <button type="submit" name="add-link" class="btn btn-primary">Add</button>
+            </form>
         </div>
     </div>
 </body>
 
 </html>
-{% endif %}

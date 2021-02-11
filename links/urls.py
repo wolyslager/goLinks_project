@@ -3,6 +3,11 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-	path('', views.links, name='links'),
-	path('<int:link_id>', views.link, name="link")
+	path('home', views.home, name="home"),
+	path('add', views.add, name='add'),
+	path('edit', views.edit, name="edit"),
+	path('delete', views.delete, name='delete'),
+	path('links', views.links, name='links'),
+	path('<str:link_param>', views.go, name="go"),
+	path('', views.redir, name="redir")
 ]

@@ -3,9 +3,9 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/add-link.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/delete-link.css'%}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <title>Add Link</title>
+    <title>Delete Link</title>
 </head>
 
 <body>
@@ -21,6 +21,15 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'home' %}"> Home <span class="sr-only">(current)</span></a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'add' %}"> Add <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'edit' %}"> Edit <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'delete' %}"> Delete <span class="sr-only">(current)</span></a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'links' %}"> View goLinks </a>
                     </li>
@@ -29,34 +38,31 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                      {% if user.is_authenticated %}
-                      <button type="button" class="btn-custom">
-                        <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout <span class="sr-only">(current)</span></a>
+                        {% if user.is_authenticated %}
+                        <button type="button" class="btn-custom">
+                            <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout <span class="sr-only">(current)</span></a>
                         </button>
                         <form action="{% url 'logout' %}" method="POST" id="logout">
-                          {% csrf_token %}
-                          <input type="hidden">
+                            {% csrf_token %}
+                            <input type="hidden">
                         </form>
-                      {% endif %}
+                        {% endif %}
                     </li>
                 </ul>
             </div>
         </nav>
-        <h1>ADD LINK</h1>
+        <h1>DELETE LINK</h1>
+        <hr>
         <div class="form-wrapper">
-            <form action="{% url 'links' %}" method="POST">
+            <form action="{% url 'delete' %}" method="POST">
                 {% include 'misc/alerts.html' %}
                 {% csrf_token %}
                 <input type="hidden" name="username" value="{{ user.username }}">
                 <div class="form-group">
-                    <label for="url">URL </label>
-                    <input type="text" class="form-control" name="url" id="url" aria-describedby="emailHelp" placeholder="Enter FULL url ex: https://www.example.com/">
-                </div>
-                <div class="form-group">
                     <label for="golink">go/Link</label>
-                    <input type="text" name="golink" class="form-control" id="exampleInputPassword1" placeholder="enter go/Link">
+                    <input type="text" name="golink" class="form-control" id="goLink" placeholder="enter go/Link">
                 </div>
-                <button type="submit" name="add-link" class="btn btn-primary">Add</button>
+                <button type="submit" name="delete-link" class="btn btn-primary">Delete</button>
             </form>
         </div>
     </div>
