@@ -40,6 +40,7 @@
                 </ul>
             </div>
         </nav>
+         {% include 'misc/alerts.html' %}
         {% if user.is_authenticated %}
         <h1>Welcome, {{user.username}}</h1>
         <div class="cards-container">

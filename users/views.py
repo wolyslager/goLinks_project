@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 def register(request):
 	if request.method == 'POST':
 		#get form values
-		firstname = (request.POST.get('firstname'))
+		firstname = request.POST.get('firstname')
 		lastname = request.POST.get('lastname')
 		email = request.POST.get('email')
 		username = request.POST.get('username')

@@ -10,7 +10,7 @@
 
 <body>
     <div class="page-container">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="{% url 'home' %}">goLinks App</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -28,34 +28,33 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                      {% if user.is_authenticated %}
+                        {% if user.is_authenticated %}
                         <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout <span class="sr-only">(current)</span></a>
                         <form action="{% url 'logout' %}" method="POST" id="logout">
-                          {% csrf_token %}
-                          <input type="hidden">
+                            {% csrf_token %}
+                            <input type="hidden">
                         </form>
-                      {% endif %}
+                        {% endif %}
                     </li>
                 </ul>
             </div>
         </nav>
         <h1>EDIT LINK</h1>
-        <div class="input-container">
-            <h4>Change </h4>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">go/</span>
+        <div class="form-wrapper">
+            <form action="{% url 'links' %}" method="POST">
+                {% include 'misc/alerts.html' %}
+                {% csrf_token %}
+                <input type="hidden" name="username" value="{{ user.username }}">
+                <div class="form-group">
+                    <label for="url">Old goLink </label>
+                    <input type="text" class="form-control" name="golink" id="url" aria-describedby="emailHelp" placeholder="Enter old goLink">
                 </div>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-            </div>
-            <h4>To </h4>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">go/</span>
+                <div class="form-group">
+                    <label for="golink">New goLink</label>
+                    <input type="text" name="new" class="form-control" id="exampleInputPassword1" placeholder="enter new goLink">
                 </div>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" name="edit-link" class="btn btn-primary">Add</button>
+            </form>
         </div>
     </div>
 </body>

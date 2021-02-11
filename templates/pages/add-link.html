@@ -41,21 +41,21 @@
         </nav>
         <h1>ADD LINK</h1>
         <div class="form-wrapper">
-        <form action="{% url 'links' %}" method="POST">
-            {% csrf_token %}
+            <form action="{% url 'links' %}" method="POST">
+                {% include 'misc/alerts.html' %}
+                {% csrf_token %}
                 <input type="hidden" name="username" value="{{ user.username }}">
-                  <input type="hidden" name="username" value="">
-            <div class="form-group">
-                <label for="url">URL </label>
-                <input type="text" class="form-control" name ="url" id="url" aria-describedby="emailHelp" placeholder="Enter email">
-            </div>
-            <div class="form-group">
-                <label for="golink">goLink</label>
-                <input type="text" name="golink" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
+                <div class="form-group">
+                    <label for="url">URL </label>
+                    <input type="text" class="form-control" name="url" id="url" aria-describedby="emailHelp" placeholder="Enter Url">
+                </div>
+                <div class="form-group">
+                    <label for="golink">goLink</label>
+                    <input type="text" name="golink" class="form-control" id="exampleInputPassword1" placeholder="enter goLink">
+                </div>
+                <button type="submit" name="add-link" class="btn btn-primary">Add</button>
+            </form>
+        </div>
     </div>
 </body>
 
