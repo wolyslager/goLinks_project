@@ -33,7 +33,7 @@ def add(request):
 		if request.method == 'POST':
 			url = request.POST.get('url')
 			golink = request.POST.get('golink')
-			username = request.POST.get('username')
+			username = request.POST.get('username') #use the request.user / security isue
 			goLinkExists = Link.objects.all().filter(golink = golink)
 			#validate link
 			if goLinkExists:
@@ -41,7 +41,7 @@ def add(request):
 				return redirect('add')
 			link = Link(url = url, golink = golink, user = username, visitors = 0)
 			link.save()
-			return redirect('home')
+			return redirect('links')
 		else:
 			return render(request, 'links/add-link.html')
 	else:
@@ -72,6 +72,9 @@ def edit(request):
 				else:
 					messages.error(request, 'You are not authorized to edit this goLink')
 					return redirect('edit')
+			else:
+				messages.error(request, 'The Link does not exist')
+				return redirect('edit')
 		else:
 			return render(request, 'links/edit-link.html')
 	else:
